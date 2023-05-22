@@ -3,7 +3,7 @@ import pytest
 
 class TestDbHandler:
     @pytest.fixture
-    def mock_config(self, mocker):
+    def mock_config(self, monkeypatch):
         def mocked_config(key):
             if key == 'DB_URL':
                 return 'mocked_db_url'
@@ -17,7 +17,8 @@ class TestDbHandler:
                 return 'mocked_nok_msg'
             return None
 
-        mocker.patch('decouple.config', side_effect=mocked_config)
+        monkeypatch.setattr('decouple.config', mocked_config)
+        #mocker.patch('decouple.config', side_effect=mocked_config)
 
     @pytest.fixture
     def db_handler(self):
