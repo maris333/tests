@@ -53,7 +53,7 @@ class TestFunctions:
         assert functions.quicksort([0, 0, 0]) == [0, 0, 0]
 
     def test_show_message(self, functions):
-        mock = Mock(functions.show_message(), return_value=None)
+        mock = Mock(functions.show_message("message"), return_value=None)
         mock(1)
         mock(2)
         calls = [call(1), call(2)]

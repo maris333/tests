@@ -29,5 +29,5 @@ class Functions:
 
         return self.quicksort(left) + middle + self.quicksort(right)
 
-    def show_message(msg):
+    def show_message(self, msg):
         print(f"Your message: {msg}")
