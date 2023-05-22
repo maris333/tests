@@ -43,6 +43,15 @@ class TestFunctions:
     def test_quicksort_returns_sorted_list(self, functions: Functions):
         assert functions.quicksort([-5, 4, 3, 2, 1, 0]) == [-5, 0, 1, 2, 3, 4]
 
+    def test_quicksort_returns_empty_list_for_empty_list(self, functions: Functions):
+        assert functions.quicksort([]) == []
+
+    def test_quicksort_returns_sorted_list_for_negative_values(self, functions: Functions):
+        assert functions.quicksort([0, -5, -4, -3, -2, -1]) == [-5, -4, -3, -2, -1, 0]
+
+    def test_quicksort_returns_sorted_list_for_same_values(self, functions: Functions):
+        assert functions.quicksort([0, 0, 0]) == [0, 0, 0]
+
     def test_show_message(self, functions):
         mock = Mock(functions.show_message(), return_value=None)
         mock(1)
