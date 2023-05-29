@@ -1,4 +1,5 @@
-from unittest.mock import call, Mock
+import builtins
+from unittest.mock import call, Mock, patch
 
 import pytest as pytest
 
@@ -53,8 +54,8 @@ class TestFunctions:
         assert functions.quicksort([0, 0, 0]) == [0, 0, 0]
 
     def test_show_message(self, functions):
-        mock = Mock(functions.show_message("message"), return_value=None)
-        mock(1)
-        mock(2)
-        calls = [call(1), call(2)]
-        mock.assert_has_calls(calls)
+        with patch('builtins.print') as mock_print:
+            functions.show_message("test1")
+            functions.show_message("test2")
+            calls = [call("Your message: test1"), call("Your message: test2")]
+            mock_print.assert_has_calls(calls)

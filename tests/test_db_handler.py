@@ -5,17 +5,14 @@ class TestDbHandler:
     @pytest.fixture
     def mock_config(self, monkeypatch):
         def mocked_config(key):
-            if key == 'DB_URL':
-                return 'mocked_db_url'
-            elif key == 'DB_USERNAME':
-                return 'mocked_db_username'
-            elif key == 'DB_PASSWORD':
-                return 'mocked_db_password'
-            elif key == 'OK_MSG':
-                return 'mocked_ok_msg'
-            elif key == 'NOK_MSG':
-                return 'mocked_nok_msg'
-            return None
+            config = {
+                'DB_URL': 'mocked_db_url',
+                'DB_USERNAME': 'mocked_db_username',
+                'DB_PASSWORD': 'mocked_db_password',
+                'OK_MSG': 'mocked_ok_msg',
+                'NOK_MSG': 'mocked_nok_msg'
+            }
+            return config.get(key)
 
         monkeypatch.setattr('decouple.config', mocked_config)
         #mocker.patch('decouple.config', side_effect=mocked_config)
